@@ -4,7 +4,7 @@ Display prayer times for every day throughout the year for a current or specific
 
 ## Usage
 
-**Demo:** https://hakim83.github.io/PrayerTimes/
+**Demo:** https://hakim83.github.io/prayerTimes/
 
 You can specify a location by:
 - Selecting your current location (requires browser location permission)
