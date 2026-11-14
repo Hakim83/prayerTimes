@@ -44,15 +44,19 @@ const LineChart: Component<LineChartProps> = (props) => {
       // Access props.data to create dependency
       const data = props.data;
       
-      if (element) {
+      if (element && data) {
         // Destroy previous chart instance if it exists
         if (chartInstance) {
           chartInstance.destroy();
           chartInstance = null;
         }
 
+        // Clear the canvas completely to ensure it's fresh
+        element.width = element.width;
+        element.height = element.height;
+
         const ctx = element.getContext('2d');
-        if (ctx && data) {
+        if (ctx) {
           chartInstance = new Chart(ctx, {
             type: 'line',
             data: {
