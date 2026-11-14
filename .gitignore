@@ -1,0 +1,24 @@
+# Ignore node modules and build output
+node_modules/
+# dist/ #leave it for GitHub pages hosting
+lib/
+
+# Ignore IDE and editor folders
+.vscode/
+.idea/
+
+# Ignore test coverage and type definitions
+coverage/
+types/
+
+# Ignore system files
+.DS_Store
+.turbo/
+
+# Ignore environment files
+.env
+.env.local
+
+# Ignore deployment documentation
+DEPLOYMENT.md
+
