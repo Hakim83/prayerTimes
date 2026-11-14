@@ -37,12 +37,20 @@ const getDayIndex = (date: Date) => {
 }
 
 const LineChart: Component<LineChartProps> = (props) => {
+  let chartInstance: Chart<"line", any, any> | null = null;
+
   const canvasRef = (element: HTMLCanvasElement) => {
     createEffect(() => {
       if (element) {
+        // Destroy previous chart instance if it exists
+        if (chartInstance) {
+          chartInstance.destroy();
+          chartInstance = null;
+        }
+
         const ctx = element.getContext('2d');
         if (ctx) {
-          const newChart = new Chart(ctx, {
+          chartInstance = new Chart(ctx, {
             type: 'line',
             data: {
               datasets: getDatasets(),
@@ -173,6 +181,14 @@ const LineChart: Component<LineChartProps> = (props) => {
           };
 
           Chart.register(lineLabelsPlugin);
+
+          // Cleanup: destroy chart when component unmounts or data changes
+          onCleanup(() => {
+            if (chartInstance) {
+              chartInstance.destroy();
+              chartInstance = null;
+            }
+          });
         }
       }
     });

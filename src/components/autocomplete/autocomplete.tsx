@@ -37,6 +37,9 @@ interface GeonamesParams {
 export const Autocomplete: Component<AutocompleteProps> = (props) => {
   const [cityInfos, setCityInfos] = createSignal<CityInfo[]>([]);
   const [selectCity, setSelectCity] = createSignal<boolean>(false);
+  const [selectedValue, setSelectedValue] = createSignal<string>("");
+  const [resetKey, setResetKey] = createSignal<number>(0);
+
   const fetchData2 = async (inputValue: string) => {
     return await new Promise<string[]>((resolve) => {
       setTimeout(
@@ -107,6 +110,10 @@ export const Autocomplete: Component<AutocompleteProps> = (props) => {
     if (info) {
       console.log(`City selected: ${info.cityDescription}, lat: ${info.lat}, lng: ${info.lng}`);
       props.selectionUpdated(info);
+      // Clear the select component by resetting key to force re-render
+      setSelectedValue("");
+      setCityInfos([]); // Clear options
+      setResetKey(k => k + 1); // Force component re-render
     } else {
       console.warn(`City not found in list: "${trimmedValue}". Available cities:`, cityInfos().map(c => c.cityDescription));
     }
@@ -138,13 +145,18 @@ export const Autocomplete: Component<AutocompleteProps> = (props) => {
         </select>
       </div>
       <Show when={selectCity()}>
-        <div class="col-3 d-flex align-items-center">
+        <div class="col-3 d-flex align-items-center" key={resetKey()}>
           <Select 
+            value={selectedValue()}
             placeholder="" 
             class="bg-white border rounded w-100 h-100" 
             emptyPlaceholder="" 
             readonly={false} 
-            onInput={fetchData} 
+            onInput={(value) => {
+              console.log("Input value:", value);
+              setSelectedValue(value);
+              fetchData(value);
+            }}
             onChange={(value) => {
               console.log("Select changed to:", value);
               updateSelection(value);
