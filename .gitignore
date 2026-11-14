@@ -2,6 +2,8 @@
 node_modules/
 # dist/ #leave it for GitHub pages hosting
 lib/
+.vite/
+public/
 
 # Ignore IDE and editor folders
 .vscode/
