@@ -41,6 +41,9 @@ const LineChart: Component<LineChartProps> = (props) => {
 
   const canvasRef = (element: HTMLCanvasElement) => {
     createEffect(() => {
+      // Access props.data to create dependency
+      const data = props.data;
+      
       if (element) {
         // Destroy previous chart instance if it exists
         if (chartInstance) {
@@ -49,7 +52,7 @@ const LineChart: Component<LineChartProps> = (props) => {
         }
 
         const ctx = element.getContext('2d');
-        if (ctx) {
+        if (ctx && data) {
           chartInstance = new Chart(ctx, {
             type: 'line',
             data: {
