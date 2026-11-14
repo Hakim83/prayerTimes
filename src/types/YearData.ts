@@ -1,12 +1,13 @@
+import { FeatureTimes } from "./FeatureTimes";
 import { TimesData } from "./TimesData";
 
 export class YearData {
     timesData: TimesData[];
-    minDate: TimesData;
-    maxDate: TimesData;
-    constructor(timesData: TimesData[], minDate: TimesData, maxDate: TimesData) {
+    minFeatureTimes: FeatureTimes;
+    maxFeatureTimes: FeatureTimes;
+    constructor(timesData: TimesData[], minFeatureTimes: FeatureTimes, maxFeatureTimes: FeatureTimes) {
         this.timesData = timesData;
-        this.minDate = minDate;
-        this.maxDate = maxDate;
+        this.minFeatureTimes = minFeatureTimes;
+        this.maxFeatureTimes = maxFeatureTimes;
     }
 }

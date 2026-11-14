@@ -1,21 +1,28 @@
 ## Purpose
 
-To display the day length (time between sunrise and sunset) for every day throughout a year for specific city.
+Display prayer times for every day throughout the year for a current or specific city.
 
 ## Usage
 
-for demo:
-https://hakim83.github.io/DaysPeriods/
+**Demo:** https://hakim83.github.io/PrayerTimes/
 
-To specify location you can select your current location (in which case you have to provide permission for browser location access), or select specific city by typing its name, you can also modify the related time zone in hours.
-Hitting the *Update* button will show a graph for the current year days' values of sunrise and sunset, also at the page bottom the longest and the shortest period values and days.
+You can specify a location by:
+- Selecting your current location (requires browser location permission)
+- Typing a specific city name to search
+- Adjusting the time zone offset in hours
+
+Click the **Update** button to generate:
+- A graph showing all prayer times throughout the year (Fajr, Sunrise, Dhuhr, Asr, Maghrib, and Isha)
+- A table displaying today's prayer times, along with the latest and earliest occurrence of each prayer time throughout the year
 
 ![alt text](./images/display.png)
 
 ## Development
 
-Developed using Typescript and [SolidJs](https://www.solidjs.com/) framework, libraries used:
-- [Adhan](https://github.com/batoulapps/adhan-js): used to calculate sunrise/sunset times.
-- [chart.js](https://www.chartjs.org/) for graph drawing
-- [solid-select](https://solid-select.com/) auto-complete input component for SolidJs
-- [Bootstrap](https://getbootstrap.com/) for UI
+Built with TypeScript and the [SolidJS](https://www.solidjs.com/) framework.
+
+**Libraries used:**
+- [Adhan](https://github.com/batoulapps/adhan-js) - Calculate prayer times, sunrise, and sunset
+- [Chart.js](https://www.chartjs.org/) - Visualization of prayer time trends
+- [Solid-select](https://solid-select.com/) - Auto-complete city search component
+- [Bootstrap](https://getbootstrap.com/) - UI styling and responsive layout

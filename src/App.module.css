@@ -23,6 +23,45 @@
   color: #b318f0;
 }
 
+/* Prayer Card Border Colors */
+.prayer-card {
+  background-color: #f8f9fa;
+  border-left: 3px solid;
+  border-radius: 0.25rem;
+}
+
+.prayer-card.fajr {
+  border-left-color: #dc3545;
+}
+
+.prayer-card.sunrise {
+  border-left-color: #fd7e14;
+}
+
+.prayer-card.dhuhr {
+  border-left-color: #20c997;
+}
+
+.prayer-card.asr {
+  border-left-color: #17a2b8;
+}
+
+.prayer-card.maghrib {
+  border-left-color: #6f42c1;
+}
+
+.prayer-card.isha {
+  border-left-color: #667bc6;
+}
+
+.text-primary-blue {
+  color: #0066cc;
+}
+
+.text-danger-red {
+  color: #dc3545;
+}
+
 @keyframes logo-spin {
   from {
     transform: rotate(0deg);
