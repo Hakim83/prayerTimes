@@ -101,10 +101,14 @@ export const Autocomplete: Component<AutocompleteProps> = (props) => {
     setCityInfos(result);
   };
   const updateSelection = (value: string) => {
-    const info = cityInfos().find(i => i.cityDescription == value);
+    // Trim whitespace from both sides to handle any potential spacing issues
+    const trimmedValue = value?.trim();
+    const info = cityInfos().find(i => i.cityDescription?.trim() === trimmedValue);
     if (info) {
-      //console.log(`lat:${info?.lat}, lng:${info?.lng}, offset:${info?.timeOffset}`);
+      console.log(`City selected: ${info.cityDescription}, lat: ${info.lat}, lng: ${info.lng}`);
       props.selectionUpdated(info);
+    } else {
+      console.warn(`City not found in list: "${trimmedValue}". Available cities:`, cityInfos().map(c => c.cityDescription));
     }
   }
 
@@ -135,7 +139,18 @@ export const Autocomplete: Component<AutocompleteProps> = (props) => {
       </div>
       <Show when={selectCity()}>
         <div class="col-3 d-flex align-items-center">
-          <Select placeholder="" class="bg-white border rounded w-100 h-100" emptyPlaceholder="" readonly={false} onInput={fetchData} onChange={updateSelection} options={cityInfos().map(i => i.cityDescription)} />
+          <Select 
+            placeholder="" 
+            class="bg-white border rounded w-100 h-100" 
+            emptyPlaceholder="" 
+            readonly={false} 
+            onInput={fetchData} 
+            onChange={(value) => {
+              console.log("Select changed to:", value);
+              updateSelection(value);
+            }}
+            options={cityInfos().map(i => i.cityDescription)} 
+          />
         </div>
       </Show>
     </>
